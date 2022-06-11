@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "jsonEmptyObject": {
+      "type": "string",
+      "defaultValue": "null"
+    },
+    "jsonObject": {
+      "type": "string",
+      "defaultValue": "{\"a\": \"b\"}"
+    },
+    "jsonString": {
+      "type": "string",
+      "defaultValue": "\"test\""
+    },
+    "jsonBoolean": {
+      "type": "string",
+      "defaultValue": "true"
+    },
+    "jsonInt": {
+      "type": "string",
+      "defaultValue": "3"
+    },
+    "jsonArray": {
+      "type": "string",
+      "defaultValue": "[[1,2,3 ]"
+    },
+    "concatValue": {
+      "type": "string",
+      "defaultValue": "demo value"
+    }
+  },
+  "resources": [
+  ],
+  "outputs": {
+    "emptyObjectOutput": {
+      "type": "bool",
+      "value": "[empty(json(parameters('jsonEmptyObject')))]"
+    },
+    "objectOutput": {
+      "type": "object",
+      "value": "[json(parameters('jsonObject'))]"
+    },
+    "stringOutput": {
+      "type": "string",
+      "value": "[json(parameters('jsonString'))]"
+    },
+    "booleanOutput": {
+      "type": "bool",
+      "value": "[json(parameters('jsonBoolean'))]"
+    },
+    "intOutput": {
+      "type": "int",
+      "value": "[json(parameters('jsonInt'))]"
+    },
+    "arrayOutput": {
+      "type": "array",
+      "value": "[json(parameters('jsonArray'))]"
+    },
+    "concatObjectOutput": {
+      "type": "object",
+      "value": "[json(concat('{\"a\": \"', parameters('concatValue'), '\"}'))]"
+    }
+  }
+}

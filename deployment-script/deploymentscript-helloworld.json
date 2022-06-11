@@ -2,7 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "name":{
+    "name": {
       "type": "string",
       "defaultValue": "\\\"John Dole\\\""
     },
@@ -20,7 +20,7 @@
       "kind": "AzurePowerShell",
       "properties": {
         "forceUpdateTag": "[parameters('utcValue')]",
-        "azPowerShellVersion": "5.0",
+        "azPowerShellVersion": "6.4",
         "scriptContent": "
           param([string] $name)
           $output = \"Hello {0}\" -f $name

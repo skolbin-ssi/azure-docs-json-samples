@@ -125,7 +125,7 @@
     {
       "type": "Microsoft.KeyVault/vaults",
       "name": "[parameters('keyVaultName')]",
-      "apiVersion": "2018-02-14",
+      "apiVersion": "2021-06-01-preview",
       "location": "[parameters('location')]",
       "properties": {
         "enabledForDeployment": "[parameters('enabledForDeployment')]",
@@ -180,7 +180,7 @@
       "kind": "AzurePowerShell",
       "properties": {
         "forceUpdateTag": "[parameters('utcValue')]",
-        "azPowerShellVersion": "5.0",
+        "azPowerShellVersion": "6.4",
         "timeout": "PT30M",
         "arguments": "[format(' -vaultName {0} -certificateName {1} -subjectName {2}', parameters('keyVaultName'), parameters('certificateName'), parameters('subjectName'))]", // can pass an arguement string, double quotes must be escaped
         "scriptContent": "

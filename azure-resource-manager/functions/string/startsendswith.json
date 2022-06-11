@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [],
+  "outputs": {
+    "startsTrue": {
+      "type": "bool",
+      "value": "[startsWith('abcdef', 'ab')]"
+    },
+    "startsCapTrue": {
+      "type": "bool",
+      "value": "[startsWith('abcdef', 'A')]"
+    },
+    "startsFalse": {
+      "type": "bool",
+      "value": "[startsWith('abcdef', 'e')]"
+    },
+    "endsTrue": {
+      "type": "bool",
+      "value": "[endsWith('abcdef', 'ef')]"
+    },
+    "endsCapTrue": {
+      "type": "bool",
+      "value": "[endsWith('abcdef', 'F')]"
+    },
+    "endsFalse": {
+      "type": "bool",
+      "value": "[endsWith('abcdef', 'e')]"
+    }
+  }
+}
