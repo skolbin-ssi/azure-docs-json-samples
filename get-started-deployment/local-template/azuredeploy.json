@@ -43,14 +43,14 @@
     }
   },
   "variables": {
-    "storageAccountName": "[concat(parameters('projectName'), uniqueString(resourceGroup().id))]",
-    "webAppName": "[concat(parameters('projectName'), 'WebApp')]",
-    "appServicePlanName": "[concat(parameters('projectName'), 'Plan')]"
+    "storageAccountName": "[format('{0}{1}', parameters('projectName'), uniqueString(resourceGroup().id))]",
+    "webAppName": "[format('{0}WebApp', parameters('projectName'))]",
+    "appServicePlanName": "[format('{0}Plan', parameters('projectName'))]"
   },
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "apiVersion": "2021-04-01",
+      "apiVersion": "2023-01-01",
       "name": "[variables('storageAccountName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -63,7 +63,7 @@
     },
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2020-12-01",
+      "apiVersion": "2022-09-01",
       "name": "[variables('appServicePlanName')]",
       "location": "[parameters('location')]",
       "sku": {
@@ -83,25 +83,25 @@
     },
     {
       "type": "Microsoft.Web/sites",
-      "apiVersion": "2020-12-01",
+      "apiVersion": "2022-09-01",
       "name": "[variables('webAppName')]",
       "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
-      ],
       "kind": "app",
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
         "siteConfig": {
           "linuxFxVersion": "[parameters('linuxFxVersion')]"
         }
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+      ]
     }
   ],
   "outputs": {
     "storageEndpoint": {
       "type": "object",
-      "value": "[reference(variables('storageAccountName')).primaryEndpoints]"
+      "value": "[reference(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2023-01-01').primaryEndpoints]"
     }
   }
 }
